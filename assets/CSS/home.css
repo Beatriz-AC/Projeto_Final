@@ -1,15 +1,15 @@
-
 :root {
-    --bg-dark: #1e1e1e;
-    --bg-black: #000000; 
-    --text-light: #ffffff; 
-    --accent-yellow: #ffcc00; 
-    --text-dark: #333333; 
-    --font-heading: 'Oswald', 'Arial Black', sans-serif;
+    --bg-dark: #1e1e1e; /* Fundo principal (cinza escuro) */
+    --bg-black: #000000; /* Fundo do banner */
+    --text-light: #ffffff; /* Texto claro */
+    --accent-yellow: #ffcc00; /* Destaque Star Wars (Amarelo/Ouro) */
+    --text-dark: #333333; /* Texto do rodapé */
+    --font-heading: 'Oswald', 'Arial Black', sans-serif; /* Fonte robusta */
     --font-body: sans-serif;
 }
 
 * {
+    /* Reset básico para garantir consistência */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -19,6 +19,7 @@ body {
     font-family: var(--font-body);
     background-color: var(--bg-dark);
     color: var(--text-light);
+    min-width: 320px; /* Para ajudar na visualização em telas pequenas */
 }
 
 a {
@@ -27,66 +28,79 @@ a {
     transition: color 0.3s;
 }
 
-
-header {
-    display: flex; 
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 5%;
-    background-color: var(--bg-dark);
-    border-bottom: 1px solid #333;
+a:hover {
+    color: var(--accent-yellow);
 }
 
+/* --- 1. CABEÇALHO (Header) --- */
+.parte {
+    /* A classe do header é 'parte da logo', então o seletor é .parte e .da e .logo,
+       mas vamos usar o seletor que corresponde à estrutura do HTML para o cabeçalho.
+       Assumindo que você estilizará a tag <header> ou apenas usará a primeira classe: */
+}
 
+header {
+    display: flex; /* Alinha os filhos (logo, busca, conta) em linha */
+    justify-content: space-between; /* Espalha os elementos (Logo na esquerda, Conta na direita, Busca no centro) */
+    align-items: center; /* Centraliza verticalmente */
+    padding: 10px 5%;
+    background-color: var(--bg-dark);
+    border-bottom: 1px solid #333; /* Linha sutil de separação */
+}
+
+/* Logo */
 .logo img {
-    height: 60px;
-    width: 60px;
-    border-radius: 50%;
+    height: 60px; /* Define altura da logo */
+    width: 60px; /* Define largura da logo */
+    border-radius: 50%; /* Faz a imagem da logo ficar redonda, como na imagem */
     object-fit: cover;
 }
 
-
+/* Barra de Pesquisa */
 .aprocurar {
-    flex-grow: 1; 
+    flex-grow: 1; /* Permite que a barra de busca ocupe o espaço restante */
     max-width: 500px;
     margin: 0 20px;
     position: relative;
-  
+    /* Inclui o ícone de lupa usando um background-image ou ::before */
 }
 
 .aprocurar input[type="text"] {
     width: 100%;
-    padding: 10px 10px 10px 40px; 
+    padding: 10px 10px 10px 40px; /* Aumenta o padding da esquerda para o ícone */
     border: none;
     border-radius: 5px;
-    background-color: #333; 
+    background-color: #333; /* Fundo cinza escuro da caixa de busca */
     color: var(--text-light);
     font-size: 16px;
+    background-image: url('search_icon_placeholder.png'); /* Placeholder para ícone de lupa */
+    background-repeat: no-repeat;
     background-position: 10px center;
     background-size: 20px;
 }
 
-
+/* Conta do Usuário */
 .conta {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Icone em cima do texto */
     align-items: center;
     cursor: pointer;
     font-size: 0.9em;
 }
 
 .conta img {
-    height: 30px; 
+    height: 30px; /* Icone de pessoa menor */
     width: 30px;
+    filter: invert(100%); /* Simula um ícone branco se o original for preto */
     margin-bottom: 3px;
 }
 
 
-
+/* --- 2. NAVEGAÇÃO (Nav Links) --- */
 .nav_links {
     display: flex;
-    justify-content: center; 
-    background-color: #333; 
+    justify-content: center; /* Centraliza os links */
+    background-color: #333; /* Cor para dar destaque sutil abaixo do header */
     padding: 10px 0;
     font-family: var(--font-heading);
     text-transform: uppercase;
@@ -100,20 +114,45 @@ header {
 }
 
 
-
+/* --- 3. BANNER DE PROMOÇÃO (Hero Section) --- */
 .banner_promocao {
-    position: relative; 
+    /* Imagem de fundo e estrelas (simulando a imagem) */
+    background-color: var(--bg-black);
+    background-image: url('star_background_placeholder.jpg'); /* Placeholder para estrelas */
+    background-size: cover;
+    background-position: center;
+    min-height: 400px; /* Altura mínima para o banner */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    min-height: 400px; 
-    background-color: #000;
+    position: relative;
     overflow: hidden;
 }
 
+.banner_promocao::after {
 
-.promocao { 
-    position: relative; 
-    padding-top: 50px;
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 300px;
+    background-image: url('../img/surucato\ roupa.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.promocao {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 120px;
     color: var(--accent-yellow);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }
 
 .promocao h1 {
@@ -126,4 +165,124 @@ header {
 .promocao p {
     font-size: 1.5em;
     font-weight: 300;
+}
+
+.explorar {
+    padding: 40px 5%; 
+    background-color: var(--bg-dark);
+}
+
+.explorar .section-titulo { 
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    color: var(--accent-yellow);
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.explore-produtos {
+    display: flex; 
+    justify-content: center;
+    gap: 30px; 
+    flex-wrap: wrap; 
+}
+
+.card-categoria {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: space-between;
+    width: 250px; 
+    height: 250px; 
+    background-color: #2b2b2b; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4)
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    border: 2px solid transparent; /
+}
+
+.card-categoria:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    border-color: var(--accent-yellow); 
+}
+
+.card-categoria img {
+    width: 80%;
+    height: 70%; 
+    object-fit: contain; 
+    border-radius: 10px;
+    margin-top: 15px; 
+}
+
+.card-categoria .label {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #3d3d3d; 
+    font-family: var(--font-body);
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-light);
+    text-transform: uppercase;
+}
+
+
+.favoritos {
+    padding: 60px 5%; 
+    background-color: var(--bg-dark); 
+    border-top: 1px solid #444; 
+    margin-top: 50px; 
+}
+
+.favoritos .favoritos-titulo { 
+    font-family: var(--font-heading);
+    font-size: 2.2em;
+    color: var(--accent-yellow); 
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.itens-favoritos {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 25px; 
+    justify-items: center;
+}
+
+.item {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+    width: 240px; 
+    background-color: #2b2b2b;
+    border-radius: 10px; 
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    border-color: var(--accent-yellow); 
+}
+
+.item img {
+    max-width: 100%; 
+    height: 150px; 
+    object-fit: contain; 
+    margin-bottom: 10px;
+}
+
+.item p {
+    font-family: var(--font-body);
+    font-size: 0.95em;
+    color: var(--text-light);
+    line-height: 1.3;
 }
